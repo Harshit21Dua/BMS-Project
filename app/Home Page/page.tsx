@@ -1,99 +1,12 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Search } from 'lucide-react';
+import React from 'react';
+import Link from 'next/link';
+import { Navbar } from '@/components/shared-components';
 
 const ThaparSBMSLanding = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 overflow-hidden">
-                <img src="/images.png" alt="Thapar Institute" className="w-full h-full object-cover" />
-              </div>
-              <span className="text-lg font-bold text-teal-900">THAPAR INSTITUTE</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <div className="flex items-center space-x-6">
-                <button className="text-gray-700 hover:text-teal-600 flex items-center space-x-1">
-                  <span>About</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                <a href="#" className="text-gray-700 hover:text-teal-600">News</a>
-                <a href="#" className="text-gray-700 hover:text-teal-600">Careers</a>
-              </div>
-              
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search the Lab"
-                  className="pl-4 pr-10 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                />
-                <Search className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
-          {/* Secondary Navigation */}
-          <div className="hidden lg:flex items-center space-x-8 pb-4 border-b border-gray-200">
-            <button className="text-gray-700 hover:text-teal-600 flex items-center space-x-1">
-              <span>Research</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button className="text-gray-700 hover:text-teal-600 flex items-center space-x-1">
-              <span>Capabilities</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button className="text-gray-700 hover:text-teal-600 flex items-center space-x-1">
-              <span>People</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button className="text-gray-700 hover:text-teal-600 flex items-center space-x-1">
-              <span>Engage</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-200">
-            <div className="px-4 py-4 space-y-3">
-              <a href="#" className="block text-gray-700 hover:text-teal-600">About</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">News</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">Careers</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">Research</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">Capabilities</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">People</a>
-              <a href="#" className="block text-gray-700 hover:text-teal-600">Engage</a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navbar currentPage="home" />
 
       {/* HERO SECTION */}
       <div className="relative w-full pt-24 bg-white overflow-hidden">
@@ -168,33 +81,35 @@ const ThaparSBMSLanding = () => {
                 <br /> System
               </h1>
 
-              {/* Arrow Button */}
-              <button className="w-14 h-14 rounded-full border-2 border-white flex items-center justify-center hover:bg-white transition duration-300 group">
-                <svg
-                  className="w-7 h-7 text-white group-hover:text-teal-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+              {/* Arrow Button - FIXED: Wrapped in Link */}
+              <Link href="/dashboard">
+                <button className="w-14 h-14 rounded-full border-2 border-white flex items-center justify-center hover:bg-white transition duration-300 group">
+                  <svg
+                    className="w-7 h-7 text-white group-hover:text-teal-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Featured Articles Section */}
+      {/* Featured Articles Section - FIXED: Wrapped in Link */}
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
+            <Link href="/dashboard" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group block">
               <div className="relative h-80 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80"
@@ -218,10 +133,10 @@ const ThaparSBMSLanding = () => {
                   Real-Time Battery Parameter Estimation
                 </h3>
               </div>
-            </div>
+            </Link>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
+            <Link href="/projects" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group block">
               <div className="relative h-80 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
@@ -245,12 +160,12 @@ const ThaparSBMSLanding = () => {
                   Machine Learning-Based Predictions
                 </h3>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Mission Section */}
+      {/* Mission Section - FIXED: Button wrapped in Link */}
       <div className="relative bg-gradient-to-br from-teal-900 via-teal-800 to-teal-950 py-20 overflow-hidden">
         {/* Decorative dots background */}
         <div className="absolute inset-0 opacity-10">
@@ -293,25 +208,27 @@ const ThaparSBMSLanding = () => {
                 The SBMS project develops intelligent monitoring and control systems for electric vehicle batteries, integrating real-time estimation of SoC and SoH parameters using hybrid modelling techniques to improve battery efficiency, lifespan, and reliability.
               </p>
 
-              <button className="group inline-flex items-center space-x-3 bg-transparent border-2 border-white px-8 py-3 rounded-full hover:bg-white hover:text-teal-900 transition-all duration-300 font-semibold">
-                <span>EXPLORE SBMS</span>
-                <div className="w-8 h-8 rounded-full border-2 border-white group-hover:border-teal-900 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </button>
+              <Link href="/about">
+                <button className="group inline-flex items-center space-x-3 bg-transparent border-2 border-white px-8 py-3 rounded-full hover:bg-white hover:text-teal-900 transition-all duration-300 font-semibold">
+                  <span>EXPLORE SBMS</span>
+                  <div className="w-8 h-8 rounded-full border-2 border-white group-hover:border-teal-900 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Research & Capabilities Section */}
+      {/* Research & Capabilities Section - FIXED: Cards wrapped in Link */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Vehicle Module Card */}
-            <div className="relative bg-gradient-to-br from-teal-600 to-teal-700 p-12 rounded-lg shadow-xl group hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <Link href="/dashboard" className="relative bg-gradient-to-br from-teal-600 to-teal-700 p-12 rounded-lg shadow-xl group hover:shadow-2xl transition-all duration-300 overflow-hidden block">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -329,16 +246,16 @@ const ThaparSBMSLanding = () => {
                 <p className="text-xl text-white mb-8 leading-relaxed">
                   Monitor and manage multiple electric vehicles in real-time with detailed telemetry data, GPS tracking, and operational parameters.
                 </p>
-                <button className="group/btn w-16 h-16 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300">
-                  <svg className="w-6 h-6 text-white group-hover/btn:text-teal-600 group-hover/btn:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white group-hover:scale-110 transition-all duration-300">
+                  <svg className="w-6 h-6 text-white group-hover:text-teal-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Battery Module Card */}
-            <div className="relative bg-gradient-to-br from-yellow-400 to-yellow-500 p-12 rounded-lg shadow-xl group hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <Link href="/dashboard" className="relative bg-gradient-to-br from-yellow-400 to-yellow-500 p-12 rounded-lg shadow-xl group hover:shadow-2xl transition-all duration-300 overflow-hidden block">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -356,18 +273,18 @@ const ThaparSBMSLanding = () => {
                 <p className="text-xl text-teal-900 mb-8 leading-relaxed">
                   Track battery health, charge cycles, voltage, current, and temperature with real-time SoC and SoH estimation.
                 </p>
-                <button className="group/btn w-16 h-16 rounded-full border-2 border-teal-900 flex items-center justify-center hover:bg-teal-900 hover:scale-110 transition-all duration-300">
-                  <svg className="w-6 h-6 text-teal-900 group-hover/btn:text-yellow-400 group-hover/btn:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 rounded-full border-2 border-teal-900 flex items-center justify-center group-hover:bg-teal-900 group-hover:scale-110 transition-all duration-300">
+                  <svg className="w-6 h-6 text-teal-900 group-hover:text-yellow-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Innovating for Impact Section */}
+      {/* Innovating for Impact Section - FIXED: Button wrapped in Link */}
       <div className="relative py-24 bg-gray-100 overflow-hidden">
         {/* Decorative dots background */}
         <div className="absolute inset-0 opacity-20">
@@ -390,18 +307,20 @@ const ThaparSBMSLanding = () => {
             Our integrated cloud-based ML environment enables development, testing, and evaluation of advanced algorithms for accurate battery parameter prediction and system optimization.
           </p>
 
-          <button className="group inline-flex items-center space-x-3 bg-transparent border-2 border-teal-700 text-teal-700 px-8 py-4 rounded-full hover:bg-teal-700 hover:text-white transition-all duration-300 font-bold text-lg">
-            <span>EXPLORE PREDICTION</span>
-            <div className="w-10 h-10 rounded-full border-2 border-teal-700 group-hover:border-white flex items-center justify-center group-hover:translate-x-1 transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </button>
+          <Link href="/projects">
+            <button className="group inline-flex items-center space-x-3 bg-transparent border-2 border-teal-700 text-teal-700 px-8 py-4 rounded-full hover:bg-teal-700 hover:text-white transition-all duration-300 font-bold text-lg">
+              <span>EXPLORE PREDICTION</span>
+              <div className="w-10 h-10 rounded-full border-2 border-teal-700 group-hover:border-white flex items-center justify-center group-hover:translate-x-1 transition-all">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
 
-      {/* Collaborating Institutions Section */}
+      {/* Collaborating Institutions Section - FIXED: Links added */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-5xl lg:text-6xl font-bold text-teal-900 mb-16">
@@ -436,12 +355,12 @@ const ThaparSBMSLanding = () => {
                 "Pioneering research in intelligent battery management systems for electric vehicles and sustainable energy solutions."
               </p>
 
-              <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+              <Link href="/about" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                 <span>Learn More</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             {/* Institution 2 */}
@@ -470,12 +389,12 @@ const ThaparSBMSLanding = () => {
                 "Advanced ML algorithms and computational expertise for battery health prediction and performance analysis."
               </p>
 
-              <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+              <Link href="/about" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                 <span>Learn More</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             {/* Institution 3 */}
@@ -504,36 +423,36 @@ const ThaparSBMSLanding = () => {
                 "Real-world deployment expertise and industry standards integration for practical battery management solutions."
               </p>
 
-              <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+              <Link href="/about" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                 <span>Learn More</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Latest News Section */}
+      {/* Latest News Section - FIXED: Links added */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-16">
             <h2 className="text-5xl lg:text-6xl font-bold text-teal-900">
               System Modules
             </h2>
-            <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2 text-lg">
+            <Link href="/projects" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2 text-lg">
               <span>VIEW ALL</span>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* Module Cards Grid */}
           <div className="grid md:grid-cols-3 gap-8">
             {/* Module 1 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
+            <Link href="/projects" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
               <div className="relative h-64 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80"
@@ -554,17 +473,17 @@ const ThaparSBMSLanding = () => {
                 <p className="text-gray-600 mb-4 flex-grow">
                   <span className="font-semibold">Advanced Analytics</span> • ML-based predicted values compared with actual battery parameters, displaying results graphically and in tabular form for performance analysis.
                 </p>
-                <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+                <div className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                   <span>Explore</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Module 2 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
+            <Link href="/projects" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
               <div className="relative h-64 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80"
@@ -585,17 +504,17 @@ const ThaparSBMSLanding = () => {
                 <p className="text-gray-600 mb-4 flex-grow">
                   <span className="font-semibold">Cloud-Based Platform</span> • Integrated cloud environment with Python code compiler and terminal for developing, testing, and evaluating ML algorithms.
                 </p>
-                <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+                <div className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                   <span>Explore</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Module 3 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
+            <Link href="/projects" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group flex flex-col">
               <div className="relative h-64 overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80"
@@ -616,19 +535,19 @@ const ThaparSBMSLanding = () => {
                 <p className="text-gray-600 mb-4 flex-grow">
                   <span className="font-semibold">Centralized Repository</span> • Performance evaluation interface for all ML models developed and deployed within SBMS, including accuracy metrics.
                 </p>
-                <a href="#" className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
+                <div className="text-teal-600 font-semibold hover:text-teal-800 transition-colors inline-flex items-center space-x-2">
                   <span>Explore</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer - FIXED: Links added */}
       <footer className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 mb-12">
@@ -676,19 +595,19 @@ const ThaparSBMSLanding = () => {
                 <div>
                   <h4 className="font-semibold text-teal-900 mb-4">Quick Links</h4>
                   <ul className="space-y-2">
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Dashboard</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Modules</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Documentation</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Contact</a></li>
+                    <li><Link href="/dashboard" className="text-gray-600 hover:text-teal-600 transition-colors">Dashboard</Link></li>
+                    <li><Link href="/projects" className="text-gray-600 hover:text-teal-600 transition-colors">Modules</Link></li>
+                    <li><Link href="/about" className="text-gray-600 hover:text-teal-600 transition-colors">Documentation</Link></li>
+                    <li><Link href="/contact" className="text-gray-600 hover:text-teal-600 transition-colors">Contact</Link></li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-semibold text-teal-900 mb-4">Resources</h4>
                   <ul className="space-y-2">
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">API Documentation</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Research Papers</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Terms of Use</a></li>
+                    <li><Link href="/projects" className="text-gray-600 hover:text-teal-600 transition-colors">API Documentation</Link></li>
+                    <li><Link href="/projects" className="text-gray-600 hover:text-teal-600 transition-colors">Research Papers</Link></li>
+                    <li><Link href="/about" className="text-gray-600 hover:text-teal-600 transition-colors">Privacy Policy</Link></li>
+                    <li><Link href="/about" className="text-gray-600 hover:text-teal-600 transition-colors">Terms of Use</Link></li>
                   </ul>
                 </div>
               </div>
